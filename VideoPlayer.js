@@ -42,11 +42,11 @@ var VideoPlayer = React.createClass({
   onEnd: function() {
     this.getNextVideo();
   },
-  onPressHitButton: function() {
+  onPressLikeButton: function() {
     console.log('hit');
     this.getNextVideo();
   },
-  onPressShitButton: function() {
+  onPressDislikeButton: function() {
     console.log('shit');
     this.getNextVideo();
   },
@@ -79,15 +79,15 @@ var VideoPlayer = React.createClass({
                onEnd={this.onEnd}           // Callback when playback finishes
                style={styles.backgroundVideo} />
         <Text style={styles.title}>
-          {video.clipTitle}
+          {video.formatName} - {video.clipTitle}
         </Text>
         <View style={styles.buttonContainer}>
-          <TouchableHighlight onPress={this.onPressHitButton} style="{styles.button}">
-            <Text style={styles.button}>HIT</Text>
+          <TouchableHighlight onPress={this.onPressLikeButton} style="{styles.button}">
+            <Text style={styles.button}>LIKE</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight onPress={this.onPressShitButton} style="{styles.button}">
-            <Text style={styles.button}>SHIT</Text>
+          <TouchableHighlight onPress={this.onPressDislikeButton} style="{styles.button}">
+            <Text style={styles.button}>DISLIKE</Text>
           </TouchableHighlight>
         </View>
          <View style={styles.trackingControls}>
