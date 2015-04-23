@@ -22,7 +22,7 @@ var ReactOnThis = React.createClass({
 
     getInitialState: function () {
         return {
-            selectedTab: 'redTab',
+            selectedTab: 'searchVideoTab',
             notifCount: 0,
             presses: 0,
         };
