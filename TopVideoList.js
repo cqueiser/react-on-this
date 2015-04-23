@@ -31,7 +31,7 @@ var {
     TouchableHighlight
     } = React;
 
-var YourVideoList = React.createClass({
+var TopVideoList = React.createClass({
     onLoad: function () {
         console.log('loaded');
     },
@@ -75,7 +75,7 @@ var YourVideoList = React.createClass({
         return (
             <View style={styles.container}>
                 <Text>
-                    Loading your videos...
+                    Loading the top videos...
                 </Text>
             </View>
         );
@@ -145,4 +145,4 @@ var styles = StyleSheet.create({
     },
 });
 
-module.exports = YourVideoList;
+module.exports = TopVideoList;
