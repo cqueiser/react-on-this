@@ -26,7 +26,7 @@ public class ReactController {
     private UserService userService;
 
     @RequestMapping(value="/videos", method=RequestMethod.GET)
-    public Collection<Video> videos(final @RequestParam(value="rows", defaultValue="10") int rows) {
+    public Collection<Video> videos(final @RequestParam(value="rows", defaultValue="10", required=false) int rows) {
         return videoService.getVideos(rows);
     }
 
@@ -41,7 +41,7 @@ public class ReactController {
     }
 
     @RequestMapping(value="/topvideos", method=RequestMethod.GET)
-    public Collection<VideoVoted> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows, final @RequestParam(value="order", defaultValue="likes") String order) {
+    public Collection<VideoVoted> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows, final @RequestParam(value="order", defaultValue="likes", required=false) String order) {
         return videoService.getTopVideos(rows,order);
     }
 
