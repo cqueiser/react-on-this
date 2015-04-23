@@ -1,6 +1,7 @@
 package com.shack.controller;
 
 import com.shack.model.Video;
+import com.shack.model.VideoVoted;
 import com.shack.model.Vote;
 import com.shack.service.UserService;
 import com.shack.service.VideoService;
@@ -38,7 +39,7 @@ public class ReactController {
     }
 
     @RequestMapping("/topvideos")
-    public Collection<Video> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows) {
+    public Collection<VideoVoted> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows) {
         return videoService.getTopVideos(rows);
     }
 

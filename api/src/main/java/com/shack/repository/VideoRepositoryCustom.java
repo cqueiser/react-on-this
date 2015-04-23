@@ -1,10 +1,10 @@
 package com.shack.repository;
 
 
-import com.shack.model.Video;
+import com.shack.model.VideoVoted;
 
 import java.util.List;
 
 public interface VideoRepositoryCustom {
-    List<Video> findTopVotes(int rows);
+    List<VideoVoted> findTopVotes(int rows);
 }
