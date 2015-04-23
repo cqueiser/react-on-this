@@ -78,8 +78,7 @@ var styles = StyleSheet.create({
     right: 0,
   },
   button: {
-    position: ""
-    fontSize: 14,
+    fontSize: 16,
     margin: 5,
     borderRadius: 4,
     borderWidth: 0.5,
