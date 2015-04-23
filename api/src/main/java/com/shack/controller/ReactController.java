@@ -40,8 +40,8 @@ public class ReactController {
     }
 
     @RequestMapping("/topvideos")
-    public Collection<VideoVoted> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows) {
-        return videoService.getTopVideos(rows);
+    public Collection<VideoVoted> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows, final @RequestParam(value="order", defaultValue="likes") String order) {
+        return videoService.getTopVideos(rows,order);
     }
 
 }
