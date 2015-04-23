@@ -97,6 +97,10 @@ var TopVideoList = React.createClass({
                 <View style={styles.rightContainer}>
                     <Text style={styles.title}>{video.clipTitle}</Text>
                     <Text style={styles.formatName}>{video.formatName}</Text>
+                    <View style={styles.row}>
+                        <Text style={styles.likes}>Likes: {video.likes}</Text>
+                        <Text style={styles.dislikes}>Dislikes: {video.dislikes}</Text>
+                    </View>
                 </View>
                 <View style={styles.separator} />
             </View>
@@ -110,9 +114,9 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-        marginTop: 10,
-        marginBottom: 10
+        backgroundColor: '#E6E6E6',
+        paddingTop: 10,
+        paddingBottom: 10
     },
     thumbnail: {
         width: 77,
@@ -131,22 +135,34 @@ var styles = StyleSheet.create({
         textAlign: 'right'
     },
     title: {
-        fontSize: 20,
-        marginBottom: 8,
+        fontSize: 18,
         textAlign: 'left',
         color: '#424242'
     },
     formatName: {
-        color: '#6E6E6E'
+        color: '#6E6E6E',
+        fontSize: 14
     },
     listView: {
         paddingTop: 20,
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#D8D8D8'
     },
     separator: {
         height: 1,
         backgroundColor: '#CCCCCC'
     },
+    likes: {
+        fontSize: 12,
+        color: '#088A08'
+    },
+    dislikes: {
+        fontSize: 12,
+        color: '#B40404',
+        marginLeft: 10
+    },
+    row: {
+        flexDirection: 'row'
+    }
 });
 
 module.exports = TopVideoList;

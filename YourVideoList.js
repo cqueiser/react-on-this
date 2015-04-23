@@ -7,21 +7,6 @@
 var React = require('react-native');
 var Video = require('react-native-video');
 var REQUEST_URL = 'http://192.168.1.117:8080/api/v1/myvideos/xyz';
-var MOCKED_VIDEO_DATA = [
-    {
-        "videoId": "MOVIE_11584253",
-        "formatName": "Red Hot Chilly Peppers",
-        "clipTitle": "Die Toten Crackhuren aus dem Kofferraum",
-        "source": "http://is.myvideo.de/movie23/95/11584253.mp4",
-        "image": "http://is.myvideo.de/movie23/95/thumbs/11584253_1.jpg"
-    },
-    {
-        "videoId": "MOVIE_11582975",
-        "formatName": "Pato Siebenhaar",
-        "clipTitle": "Fuld Af Løgn",
-        "source": "http://is.myvideo.de/movie18/db/11582975.mp4",
-        "image": "http://is.myvideo.de/movie18/db/thumbs/11582975_1.jpg"
-    }];
 var {
     AppRegistry,
     Image,
@@ -110,9 +95,9 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-        marginTop: 10,
-        marginBottom: 10
+        backgroundColor: '#E6E6E6',
+        paddingTop: 10,
+        paddingBottom: 10
     },
     thumbnail: {
         width: 77,
@@ -131,17 +116,17 @@ var styles = StyleSheet.create({
         textAlign: 'right'
     },
     title: {
-        fontSize: 20,
-        marginBottom: 8,
+        fontSize: 18,
         textAlign: 'left',
         color: '#424242'
     },
     formatName: {
-        color: '#6E6E6E'
+        color: '#6E6E6E',
+        fontSize: 14
     },
     listView: {
         paddingTop: 20,
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#D8D8D8'
     },
     separator: {
         height: 1,
