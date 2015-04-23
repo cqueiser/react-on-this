@@ -21,17 +21,32 @@ var VideoPlayer = React.createClass({
   getInitialState: function() {
     return {
       index: 0,
+      currentTime: 0.0,
+      duration: 0.0,
       video: MOCKED_VIDEO_DATA[0]
     }
   },
-  onLoad: function() {
-    console.log('loaded');
+  onLoad(data) {
+    this.setState({duration: data.duration});
   },
-  _onPressHitButton: function() {
+  onProgress(data) {
+    this.setState({currentTime: data.currentTime});
+  },
+  getCurrentTimePercentage() {
+    if (this.state.currentTime > 0) {
+      return parseFloat(this.state.currentTime) / parseFloat(this.state.duration);
+    } else {
+      return 0;
+    }
+  },
+  onEnd: function() {
+    this.getNextVideo();
+  },
+  onPressHitButton: function() {
     console.log('hit');
     this.getNextVideo();
   },
-  _onPressShitButton: function() {
+  onPressShitButton: function() {
     console.log('shit');
     this.getNextVideo();
   },
@@ -42,13 +57,14 @@ var VideoPlayer = React.createClass({
         index = 0;
     }
     this.setState({'index': index});
-  //  return this.getVideoData();
   },
   getVideoData: function(){
     return MOCKED_VIDEO_DATA[this.state.index]
   },
   render: function() {
     var video = this.getVideoData();
+    var flexCompleted = this.getCurrentTimePercentage() * 100;
+    var flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
     return (
       <View style={styles.container}>
         <Video source={{uri: video.source}} // Can be a URL or a local file.
@@ -59,21 +75,27 @@ var VideoPlayer = React.createClass({
                resizeMode="cover"           // Fill the whole screen at aspect ratio.
                repeat={false}                // Repeat forever.
                onLoad={this.onLoad}    // Callback when video loads
-               onProgress={this.setTime}    // Callback every ~250ms with currentTime
+               onProgress={this.onProgress}    // Callback every ~250ms with currentTime
                onEnd={this.onEnd}           // Callback when playback finishes
                style={styles.backgroundVideo} />
         <Text style={styles.title}>
           {video.clipTitle}
         </Text>
         <View style={styles.buttonContainer}>
-          <TouchableHighlight onPress={this._onPressHitButton} style="{styles.button}">
+          <TouchableHighlight onPress={this.onPressHitButton} style="{styles.button}">
             <Text style={styles.button}>HIT</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight onPress={this._onPressShitButton} style="{styles.button}">
+          <TouchableHighlight onPress={this.onPressShitButton} style="{styles.button}">
             <Text style={styles.button}>SHIT</Text>
           </TouchableHighlight>
         </View>
+         <View style={styles.trackingControls}>
+            <View style={styles.progress}>
+              <View style={[styles.innerProgressCompleted, {flex: flexCompleted}]} />
+              <View style={[styles.innerProgressRemaining, {flex: flexRemaining}]} />
+            </View>
+          </View>
       </View>
 
     );
@@ -82,14 +104,13 @@ var VideoPlayer = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
-//    alignItems: 'center',
-    //backgroundColor: '#FFFFFF',
+    flex: 1
   },
   title: {
     fontSize: 14,
     color: '#DDDDDD',
     margin: 10,
+    backgroundColor: 'transparent'
   },
   backgroundVideo: {
     position: 'absolute',
@@ -97,6 +118,21 @@ var styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
+  },
+  progress: {
+    flex: 1,
+    flexDirection: 'row',
+    borderRadius: 3,
+    overflow: 'hidden',
+    marginTop: 10
+  },
+  innerProgressCompleted: {
+    height: 10,
+    backgroundColor: '#cccccc',
+  },
+  innerProgressRemaining: {
+    height: 10,
+    backgroundColor: '#2C2C2C',
   },
   button: {
     fontSize: 16,

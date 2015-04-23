@@ -52,7 +52,7 @@ var ReactOnThis = React.createClass({
         return (
             <TabBarIOS>
                 <TabBarIOS.Item
-                    systemIcon="search"
+                    systemIcon="featured"
                     title="Explore"
                     selected={this.state.selectedTab === 'searchVideoTab'}
                     onPress={() => {
@@ -64,7 +64,7 @@ var ReactOnThis = React.createClass({
                     {this._renderVideoPlayer()}
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
-                    systemIcon="most-viewed"
+                    systemIcon="top-rated"
                     badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
                     selected={this.state.selectedTab === 'yourVideoTab'}
                     onPress={() => {
