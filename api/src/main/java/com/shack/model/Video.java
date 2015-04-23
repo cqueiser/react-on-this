@@ -17,8 +17,11 @@ public class Video {
     @Column(name = "video_id", nullable = false, length = 20)
     private String videoId;
 
-    @Column(name = "title", nullable = false, length = 100)
-    private String title;
+    @Column(name = "format_name", nullable = false, length = 100)
+    private String formatName;
+
+    @Column(name = "clip_title", nullable = false, length = 100)
+    private String clipTitle;
 
     @Column(name = "source", nullable = false, length = 256)
     private String source;
@@ -26,9 +29,10 @@ public class Video {
     @Column(name = "image", nullable = false, length = 256)
     private String image;
 
-    public Video(final String videoId, final String title, final String source, final String image) {
+    public Video(final String videoId, final String formatName, final String clipTitle, final String source, final String image) {
         this.videoId = videoId;
-        this.title = title;
+        this.formatName = formatName;
+        this.clipTitle = clipTitle;
         this.source = source;
         this.image = image;
     }
@@ -41,12 +45,20 @@ public class Video {
         this.videoId = videoId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getFormatName() {
+        return formatName;
     }
 
-    public void setTitle(final String title) {
-        this.title = title;
+    public void setFormatName(final String formatName) {
+        this.formatName = formatName;
+    }
+
+    public String getClipTitle() {
+        return clipTitle;
+    }
+
+    public void setClipTitle(final String clipTitle) {
+        this.clipTitle = clipTitle;
     }
 
     public String getSource() {
