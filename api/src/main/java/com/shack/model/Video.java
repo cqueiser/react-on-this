@@ -1,11 +1,6 @@
 package com.shack.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "videos")
@@ -28,6 +23,12 @@ public class Video {
 
     @Column(name = "image", nullable = false, length = 256)
     private String image;
+
+    @Transient
+    private int like;
+
+    @Transient
+    private int dislikes;
 
     public Video(final String videoId, final String formatName, final String clipTitle, final String source, final String image) {
         this.videoId = videoId;
@@ -76,4 +77,12 @@ public class Video {
     public void setImage(final String image) {
         this.image = image;
     }
+
+    public int getLike() {return like;}
+
+    public void setLike(int like) {this.like = like;}
+
+    public int getDislikes() {return dislikes;}
+
+    public void setDislikes(int dislikes) {this.dislikes = dislikes;}
 }
