@@ -6,6 +6,7 @@
 
 var React = require('react-native');
 var VideoPlayer = require('./VideoPlayer');
+var YourVideoList = require('./YourVideoList');
 var {
     AppRegistry,
     StyleSheet,
@@ -23,8 +24,6 @@ var ReactOnThis = React.createClass({
     getInitialState: function () {
         return {
             selectedTab: 'searchVideoTab',
-            notifCount: 0,
-            presses: 0,
         };
     },
 
@@ -32,6 +31,12 @@ var ReactOnThis = React.createClass({
         return (
             <VideoPlayer />
         );
+    },
+
+    _renderYourVideoList: function() {
+        return (
+            <YourVideoList />
+        )
     },
 
     _renderContent: function (color:string, pageText:string) {
@@ -65,11 +70,10 @@ var ReactOnThis = React.createClass({
                     onPress={() => {
                         this.setState({
                             selectedTab: 'yourVideoTab',
-                            notifCount: this.state.notifCount + 1,
                         });
                         }}
                 >
-                    {this._renderContent('#783E33', 'Your Videos')}
+                    {this._renderYourVideoList()}
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     systemIcon="favorites"
@@ -77,7 +81,6 @@ var ReactOnThis = React.createClass({
                     onPress={() => {
                         this.setState({
                             selectedTab: 'topListTab',
-                            presses: this.state.presses + 1
                         });
                     }}
                 >
