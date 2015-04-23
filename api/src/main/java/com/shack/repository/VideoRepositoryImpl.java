@@ -18,7 +18,7 @@ public class VideoRepositoryImpl implements VideoRepositoryCustom {
     @Override
     public List<Video> findTopVotes(int rows) {
         List<Video> results = jdbcTemplate.query(
-                "SELECT count(vo.VIDEO_ID) as total, vi.* FROM VOTES vo JOIN VIDEOS vi ON vo.VIDEO_ID = vi.VIDEO_ID GROUP BY vo.VIDEO_ID ORDER BY total DESC LIMIT " + rows,
+                "SELECT count(vo.VIDEO_ID) as total, vi.* FROM VOTES vo JOIN VIDEOS vi ON vo.VIDEO_ID = vi.VIDEO_ID WHERE (vo.LIKES = TRUE) GROUP BY vo.VIDEO_ID ORDER BY total DESC LIMIT " + rows,
                 new RowMapper<Video>() {
                     @Override
                     public Video mapRow(ResultSet rs, int rowNum) throws SQLException {
