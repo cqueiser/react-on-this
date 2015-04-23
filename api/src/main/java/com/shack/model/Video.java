@@ -1,35 +1,64 @@
 package com.shack.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "videos")
 public class Video {
-    String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    String title;
+    @Column(name = "video_id", nullable = false, length = 20)
+    private String videoId;
 
-    String source;
+    @Column(name = "format_name", nullable = false, length = 100)
+    private String formatName;
 
-    String image;
+    @Column(name = "clip_title", nullable = false, length = 100)
+    private String clipTitle;
 
-    public Video(final String id, final String title, final String source, final String image) {
-        this.id = id;
-        this.title = title;
+    @Column(name = "source", nullable = false, length = 256)
+    private String source;
+
+    @Column(name = "image", nullable = false, length = 256)
+    private String image;
+
+    public Video(final String videoId, final String formatName, final String clipTitle, final String source, final String image) {
+        this.videoId = videoId;
+        this.formatName = formatName;
+        this.clipTitle = clipTitle;
         this.source = source;
         this.image = image;
     }
 
-    public String getId() {
-        return id;
+    public String getVideoId() {
+        return videoId;
     }
 
-    public void setId(final String id) {
-        this.id = id;
+    public void setVideoId(final String videoId) {
+        this.videoId = videoId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getFormatName() {
+        return formatName;
     }
 
-    public void setTitle(final String title) {
-        this.title = title;
+    public void setFormatName(final String formatName) {
+        this.formatName = formatName;
+    }
+
+    public String getClipTitle() {
+        return clipTitle;
+    }
+
+    public void setClipTitle(final String clipTitle) {
+        this.clipTitle = clipTitle;
     }
 
     public String getSource() {
