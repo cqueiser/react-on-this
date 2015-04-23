@@ -12,8 +12,8 @@ import java.util.Collection;
 @RestController
 public class ReactController {
 
-    @RequestMapping("/greeting")
-    public Collection<Video> greeting(@RequestParam(value="name", defaultValue="World") String name) {
+    @RequestMapping("/video")
+    public Collection<Video> greeting(@RequestParam(value="rows", defaultValue="10") String rows) {
         Collection videos = new ArrayList();
         Video video = new Video("MOVIE_123", "Madonna - Yeah", ".mp4", ".jpg");
         videos.add(video);
