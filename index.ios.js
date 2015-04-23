@@ -24,7 +24,7 @@ var ReactOnThis = React.createClass({
 
     getInitialState: function () {
         return {
-            selectedTab: 'searchVideoTab',
+            selectedTab: 'searchVideoTab'
         };
     },
 
@@ -56,7 +56,7 @@ var ReactOnThis = React.createClass({
                     selected={this.state.selectedTab === 'searchVideoTab'}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'searchVideoTab',
+                            selectedTab: 'searchVideoTab'
                         });
                         }}
                 >
@@ -69,7 +69,7 @@ var ReactOnThis = React.createClass({
                     selected={this.state.selectedTab === 'topListTab'}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'topListTab',
+                            selectedTab: 'topListTab'
                         });
                     }}
                 >
@@ -83,7 +83,7 @@ var ReactOnThis = React.createClass({
                     selected={this.state.selectedTab === 'yourVideoTab'}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'yourVideoTab',
+                            selectedTab: 'yourVideoTab'
                         });
                         }}
                 >
@@ -97,12 +97,12 @@ var ReactOnThis = React.createClass({
 var styles = StyleSheet.create({
     tabContent: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     tabText: {
         color: 'white',
-        margin: 50,
-    },
+        margin: 50
+    }
 });
 
 AppRegistry.registerComponent('ReactOnThis', () => ReactOnThis);

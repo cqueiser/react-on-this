@@ -36,16 +36,13 @@ var TopVideoList = React.createClass({
     onLoad: function () {
         console.log('loaded');
     },
-    getMockedVideos: function() {
-        return MOCKED_VIDEO_DATA;
-    },
     fetchData: function() {
         fetch(REQUEST_URL)
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRows(responseData),
-                    loaded: true,
+                    loaded: true
                 });
                 console.log(responseData);
             })
@@ -57,9 +54,9 @@ var TopVideoList = React.createClass({
     getInitialState: function() {
         return {
             dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
+                rowHasChanged: (row1, row2) => row1 !== row2
             }),
-            loaded: false,
+            loaded: false
         };
     },
     _renderRow: function(rowData: string, sectionID: number, rowID: number) {
@@ -104,7 +101,7 @@ var TopVideoList = React.createClass({
                 <View style={styles.separator} />
             </View>
         );
-    },
+    }
 });
 
 var styles = StyleSheet.create({
@@ -115,15 +112,15 @@ var styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
         marginTop: 10,
-        marginBottom: 10,
+        marginBottom: 10
     },
     thumbnail: {
         width: 77,
         height: 54,
-        marginRight: 5,
+        marginRight: 5
     },
     rightContainer: {
-        flex: 1,
+        flex: 1
     },
     indexNumber: {
         fontSize: 35,
@@ -131,24 +128,24 @@ var styles = StyleSheet.create({
         color: '#6E6E6E',
         width: 70,
         paddingRight: 20,
-        textAlign: 'right',
+        textAlign: 'right'
     },
     title: {
         fontSize: 20,
         marginBottom: 8,
         textAlign: 'left',
-        color: '#424242',
+        color: '#424242'
     },
     formatName: {
-        color: '#6E6E6E',
+        color: '#6E6E6E'
     },
     listView: {
         paddingTop: 20,
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#F5FCFF'
     },
     separator: {
         height: 1,
-        backgroundColor: '#CCCCCC',
+        backgroundColor: '#CCCCCC'
     },
 });
 

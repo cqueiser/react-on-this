@@ -28,8 +28,6 @@ var DataModule = {
   _pullUrl:_apiUrl_pull,
   _pushUrl:_apiUrl_push,
 
-// TBD  _isPulling:false,
-
   bind:function(client){
     this._client = client;
     this._pull(true);
@@ -51,7 +49,7 @@ var DataModule = {
   pushData:function(likes){
 
       var data = {
-        user:"xyz",   // TODO make this dynamic
+        user:"xyz",
         videoId:this._activeData.videoId,
         likes:""+likes
       };
