@@ -9,8 +9,8 @@ var Video = require('react-native-video');
 var MOCKED_VIDEO_DATA = [
     {
         "videoId": "MOVIE_11584253",
-        "formatName": "She Keeps Bees",
-        "clipTitle": "Is What It Is",
+        "formatName": "Red Hot Chilly Peppers",
+        "clipTitle": "Die Toten Crackhuren aus dem Kofferraum",
         "source": "http://is.myvideo.de/movie23/95/11584253.mp4",
         "image": "http://is.myvideo.de/movie23/95/thumbs/11584253_1.jpg"
     },
@@ -38,9 +38,6 @@ var YourVideoList = React.createClass({
     getMockedVideos: function() {
         return MOCKED_VIDEO_DATA;
     },
-    getCount: function() {
-        return MOCKED_VIDEO_DATA.length;
-    },
     fetchData: function() {
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(this.getMockedVideos()),
@@ -58,6 +55,9 @@ var YourVideoList = React.createClass({
             loaded: false,
         };
     },
+    _renderRow: function(rowData: string, sectionID: number, rowID: number) {
+        return this.renderVideo(rowData, rowID);
+    },
     render: function () {
         if (!this.state.loaded) {
             return this.renderLoadingView();
@@ -66,7 +66,7 @@ var YourVideoList = React.createClass({
         return (
             <ListView
                 dataSource={this.state.dataSource}
-                renderRow={this.renderVideo}
+                renderRow={this._renderRow}
                 style={styles.listView}
                 />
         );
@@ -81,9 +81,11 @@ var YourVideoList = React.createClass({
         );
     },
 
-    renderVideo: function(video) {
+    renderVideo: function(video, rowID: number) {
+        rowID++;
         return (
             <View style={styles.container}>
+                <Text style={styles.indexNumber}>{rowID}</Text>
                 <Image
                     source={{uri: video.image}}
                     style={styles.thumbnail}
@@ -92,6 +94,7 @@ var YourVideoList = React.createClass({
                     <Text style={styles.title}>{video.clipTitle}</Text>
                     <Text style={styles.year}>{video.formatName}</Text>
                 </View>
+                <View style={styles.separator} />
             </View>
         );
     },
@@ -104,13 +107,24 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
+        marginTop: 10,
+        marginBottom: 10,
     },
     thumbnail: {
-        width: 53,
-        height: 81,
+        width: 77,
+        height: 54,
+        marginRight: 5,
     },
     rightContainer: {
         flex: 1,
+    },
+    indexNumber: {
+        fontSize: 35,
+        fontWeight: 'bold',
+        color: '#6E6E6E',
+        width: 70,
+        paddingRight: 20,
+        textAlign: 'right',
     },
     title: {
         fontSize: 20,
@@ -120,6 +134,10 @@ var styles = StyleSheet.create({
     listView: {
         paddingTop: 20,
         backgroundColor: '#F5FCFF',
+    },
+    separator: {
+        height: 1,
+        backgroundColor: '#CCCCCC',
     },
 });
 

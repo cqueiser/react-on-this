@@ -54,6 +54,7 @@ var ReactOnThis = React.createClass({
                 <TabBarIOS.Item
                     systemIcon="search"
                     title="Explore"
+                    accessibilityLabel="Explore"
                     selected={this.state.selectedTab === 'searchVideoTab'}
                     onPress={() => {
                         this.setState({
@@ -65,6 +66,8 @@ var ReactOnThis = React.createClass({
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     systemIcon="most-viewed"
+                    title="Your Videos"
+                    accessibilityLabel="Your Videos"
                     badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
                     selected={this.state.selectedTab === 'yourVideoTab'}
                     onPress={() => {
@@ -77,6 +80,8 @@ var ReactOnThis = React.createClass({
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     systemIcon="favorites"
+                    title="Top Videos"
+                    accessibilityLabel="Top Videos"
                     selected={this.state.selectedTab === 'topListTab'}
                     onPress={() => {
                         this.setState({
