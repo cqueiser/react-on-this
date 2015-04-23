@@ -29,8 +29,7 @@ public class ImportService {
         Random random = new Random();
         ObjectMapper mapper = new ObjectMapper();
         try {
-            List<ImportVideo> videos;
-            videos = mapper.readValue(this.getClass().getResourceAsStream("/data.json"), new TypeReference<List<ImportVideo>>() {});
+            List<ImportVideo> videos = mapper.readValue(this.getClass().getResourceAsStream("/data.json"), new TypeReference<List<ImportVideo>>() {});
 
             for (ImportVideo importVideo : videos) {
 

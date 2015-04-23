@@ -6,9 +6,6 @@ import javax.persistence.*;
 @Table(name = "videos")
 public class Video {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "video_id", nullable = false, length = 20)
     private String videoId;
 
