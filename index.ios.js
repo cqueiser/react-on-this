@@ -73,7 +73,7 @@ var ReactOnThis = React.createClass({
                         });
                     }}
                 >
-                    {this._renderTopVideoList()}
+                    {this._renderYourVideoList()}
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     systemIcon="top-rated"
@@ -87,7 +87,7 @@ var ReactOnThis = React.createClass({
                         });
                         }}
                 >
-                    {this._renderYourVideoList()}
+                    {this._renderTopVideoList()}
                 </TabBarIOS.Item>
             </TabBarIOS>
         );

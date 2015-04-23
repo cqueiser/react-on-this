@@ -6,6 +6,7 @@
 
 var React = require('react-native');
 var Video = require('react-native-video');
+var REQUEST_URL = 'http://192.168.1.117:8080/api/v1/topvideos?rows=10&order=likeRatio';
 var MOCKED_VIDEO_DATA = [
     {
         "videoId": "MOVIE_11584253",
@@ -39,10 +40,16 @@ var TopVideoList = React.createClass({
         return MOCKED_VIDEO_DATA;
     },
     fetchData: function() {
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(this.getMockedVideos()),
-            loaded: true,
-        });
+        fetch(REQUEST_URL)
+            .then((response) => response.json())
+            .then((responseData) => {
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows(responseData),
+                    loaded: true,
+                });
+                console.log(responseData);
+            })
+            .done();
     },
     componentDidMount: function() {
         this.fetchData();
