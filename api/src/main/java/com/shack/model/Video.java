@@ -24,12 +24,6 @@ public class Video {
     @Column(name = "image", nullable = false, length = 256)
     private String image;
 
-    @Transient
-    private int like;
-
-    @Transient
-    private int dislikes;
-
     public Video() {}
 
     public Video(final String videoId, final String formatName, final String clipTitle, final String source, final String image) {
@@ -79,12 +73,4 @@ public class Video {
     public void setImage(final String image) {
         this.image = image;
     }
-
-    public int getLike() {return like;}
-
-    public void setLike(int like) {this.like = like;}
-
-    public int getDislikes() {return dislikes;}
-
-    public void setDislikes(int dislikes) {this.dislikes = dislikes;}
 }
