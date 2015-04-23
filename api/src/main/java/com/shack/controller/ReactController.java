@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 
 
-@RestController
+@RestController()
+@RequestMapping(value="/api/v1")
 public class ReactController {
     @Autowired
     private VideoService videoService;
@@ -24,22 +25,22 @@ public class ReactController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/videos")
+    @RequestMapping(value="/videos", method=RequestMethod.GET)
     public Collection<Video> videos(final @RequestParam(value="rows", defaultValue="10") int rows) {
         return videoService.getVideos(rows);
     }
 
-    @RequestMapping(name = "/vote", method = RequestMethod.POST)
+    @RequestMapping(value="/vote", method=RequestMethod.POST)
     public void vote(@RequestBody Vote vote) {
         userService.addVoting(vote);
     }
 
-    @RequestMapping("/myvideos/{user}")
+    @RequestMapping(value="/myvideos/{user}", method=RequestMethod.GET)
     public Collection<Video> myVideos(final @PathVariable String user) {
         return userService.getUserVideos(user);
     }
 
-    @RequestMapping("/topvideos")
+    @RequestMapping(value="/topvideos", method=RequestMethod.GET)
     public Collection<VideoVoted> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows) {
         return videoService.getTopVideos(rows);
     }
