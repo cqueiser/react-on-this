@@ -29,6 +29,8 @@ public class Video {
     @Column(name = "image", nullable = false, length = 256)
     private String image;
 
+    public Video() {}
+
     public Video(final String videoId, final String formatName, final String clipTitle, final String source, final String image) {
         this.videoId = videoId;
         this.formatName = formatName;
