@@ -5,10 +5,10 @@
 'use strict';
 
 var React = require('react-native');
-var Video = require('react-native-video');
+var VideoPlayer = require ('./VideoPlayer');
 var MOCKED_VIDEO_DATA = [
-  {title: 'Title', uri:  "http://is.myvideo.de/movie23/95/11584253.mp4"},
-];
+  {"videoId":"MOVIE_11584253","formatName":"She Keeps Bees","clipTitle":"Is What It Is","source":"http://is.myvideo.de/movie23/95/11584253.mp4","image":"http://is.myvideo.de/movie23/95/thumbs/11584253_1.jpg"},
+  {"videoId":"MOVIE_11582975","formatName":"Pato Siebenhaar","clipTitle":"Fuld Af Løgn","source":"http://is.myvideo.de/movie18/db/11582975.mp4","image":"http://is.myvideo.de/movie18/db/thumbs/11582975_1.jpg"}];
 
 var {
   AppRegistry,
@@ -20,35 +20,8 @@ var {
 
 var ReactOnThis = React.createClass({
   render: function() {
-    var video = MOCKED_VIDEO_DATA[0];
     return (
-      <View style={styles.container}>
-
-        <Video source={{uri: video.uri}} // Can be a URL or a local file.
-               rate={1.0}                   // 0 is paused, 1 is normal.
-               volume={1.0}                 // 0 is muted, 1 is normal.
-               muted={false}                // Mutes the audio entirely.
-               paused={false}               // Pauses playback entirely.
-               resizeMode="cover"           // Fill the whole screen at aspect ratio.
-               repeat={false}                // Repeat forever.
-               onLoad={this.setDuration}    // Callback when video loads
-               onProgress={this.setTime}    // Callback every ~250ms with currentTime
-               onEnd={this.onEnd}           // Callback when playback finishes
-               style={styles.backgroundVideo} />
-          <TouchableHighlight onPress={this._onPressButton} style="{styles.button}">
-            <Text>Hit</Text>
-          </TouchableHighlight>
-        <Text style={styles.welcome}>
-          {video.title}
-        </Text>
-
-          <TouchableHighlight onPress={this._onPressButton} style="{styles.button}">
-            <Text style={styles.welcome}>Shit</Text>
-          </TouchableHighlight>
-      </View>
-
-
-
+      <VideoPlayer />
     );
   }
 });
@@ -64,11 +37,6 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: '#FFFFFF',
     margin: 5,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
   backgroundVideo: {
     position: 'absolute',
