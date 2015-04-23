@@ -48,7 +48,7 @@ public class ImportService {
                         for(int i=1; i<=5; i++) {
                             if (random.nextBoolean()) {
                                 Vote vote = new Vote(
-                                        "User_" + i,
+                                        "user_" + i,
                                         importVideo.getId(),
                                         random.nextBoolean()
                                 );
