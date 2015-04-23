@@ -14,7 +14,8 @@ var {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } = React;
 
 var VideoPlayer = React.createClass({
@@ -26,10 +27,10 @@ var VideoPlayer = React.createClass({
       video: MOCKED_VIDEO_DATA[0]
     }
   },
-  onLoad(data) {
+  onLoad: function (data) {
     this.setState({duration: data.duration});
   },
-  onProgress(data) {
+  onProgress: function (data) {
     this.setState({currentTime: data.currentTime});
   },
   getCurrentTimePercentage() {
@@ -83,7 +84,7 @@ var VideoPlayer = React.createClass({
         </Text>
         <View style={styles.buttonContainer}>
           <TouchableHighlight onPress={this.onPressLikeButton} style="{styles.button}">
-            <Text style={styles.button}>LIKE</Text>
+              <Text style={styles.button}>LIKE</Text>
           </TouchableHighlight>
 
           <TouchableHighlight onPress={this.onPressDislikeButton} style="{styles.button}">
