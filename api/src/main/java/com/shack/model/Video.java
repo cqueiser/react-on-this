@@ -1,27 +1,44 @@
 package com.shack.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "videos")
 public class Video {
-    String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    String title;
+    @Column(name = "video_id", nullable = false, length = 20)
+    private String videoId;
 
-    String source;
+    @Column(name = "title", nullable = false, length = 100)
+    private String title;
 
-    String image;
+    @Column(name = "source", nullable = false, length = 256)
+    private String source;
 
-    public Video(final String id, final String title, final String source, final String image) {
-        this.id = id;
+    @Column(name = "image", nullable = false, length = 256)
+    private String image;
+
+    public Video(final String videoId, final String title, final String source, final String image) {
+        this.videoId = videoId;
         this.title = title;
         this.source = source;
         this.image = image;
     }
 
-    public String getId() {
-        return id;
+    public String getVideoId() {
+        return videoId;
     }
 
-    public void setId(final String id) {
-        this.id = id;
+    public void setVideoId(final String videoId) {
+        this.videoId = videoId;
     }
 
     public String getTitle() {
