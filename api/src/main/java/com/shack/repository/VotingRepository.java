@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface VotingRepository extends CrudRepository<Vote, Long>{
 
-    public List<Vote> findByUser(String user);
+    public List<Vote> findByUserAndLikes(String user, boolean likes);
 
 }
