@@ -1,5 +1,6 @@
 package com.shack;
 
+import com.google.common.base.Predicate;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
@@ -20,6 +21,12 @@ public class Application extends WebMvcAutoConfiguration {
     public Docket reactApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
+                .paths(new Predicate<String>() {
+                    @Override
+                    public boolean apply(String path) {
+                        return path.startsWith("/api");
+                    }
+                })
                 .build();
     }
 }
