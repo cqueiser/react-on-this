@@ -29,13 +29,12 @@ public class ImportService {
         Random random = new Random();
         ObjectMapper mapper = new ObjectMapper();
         try {
-            List<ImportVideo> videos;
-            videos = mapper.readValue(this.getClass().getResourceAsStream("/data.json"), new TypeReference<List<ImportVideo>>() {});
+            List<ImportVideo> videos = mapper.readValue(this.getClass().getResourceAsStream("/data.json"), new TypeReference<List<ImportVideo>>() {});
 
             for (ImportVideo importVideo : videos) {
 
                 for (MovieSource movieSource : importVideo.getMovieSources()) {
-                    if (!movieSource.isToken_protected() && movieSource.getMime_type().contains("mp4")) {
+                    if (!movieSource.isToken_protected() && movieSource.getMime_type().contains("mp4") && "http".equals(movieSource.getProtocol())) {
                         Video video = new Video(
                                 importVideo.getId(),
                                 importVideo.getMovieFormatName(),

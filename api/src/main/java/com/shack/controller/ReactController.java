@@ -1,16 +1,18 @@
 package com.shack.controller;
 
 import com.shack.model.Video;
+import com.shack.model.VideoVoted;
 import com.shack.model.Vote;
 import com.shack.service.UserService;
 import com.shack.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -27,8 +29,8 @@ public class ReactController {
         return videoService.getVideos(rows);
     }
 
-    @RequestMapping("/vote")
-    public void vote(@RequestParam Vote vote) {
+    @RequestMapping(name = "/vote", method = RequestMethod.POST)
+    public void vote(@RequestBody Vote vote) {
         userService.addVoting(vote);
     }
 
@@ -38,7 +40,7 @@ public class ReactController {
     }
 
     @RequestMapping("/topvideos")
-    public Collection<Video> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows) {
+    public Collection<VideoVoted> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows) {
         return videoService.getTopVideos(rows);
     }
 

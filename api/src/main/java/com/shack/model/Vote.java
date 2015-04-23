@@ -2,20 +2,18 @@ package com.shack.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
+@IdClass(VoteId.class)
 @Table(name = "votes")
 public class Vote {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "user", nullable = false, length = 50)
     private String user;
+    @Id
     @Column(name = "video_id", nullable = false, length = 20)
     private String videoId;
     @Column(name = "likes", nullable = false)

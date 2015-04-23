@@ -27,12 +27,20 @@ var VideoPlayer = React.createClass({
   onLoad: function() {
     console.log('loaded');
   },
-  _onPressButton: function() {
+  _onPressHitButton: function() {
+    console.log('hit');
+    this.getNextVideo();
+  },
+  _onPressShitButton: function() {
+    console.log('shit');
     this.getNextVideo();
   },
   getNextVideo: function() {
     var index = this.state.index;
     index++;
+    if (index >= MOCKED_VIDEO_DATA.length) {
+        index = 0;
+    }
     this.setState({'index': index});
   //  return this.getVideoData();
   },
@@ -41,7 +49,6 @@ var VideoPlayer = React.createClass({
   },
   render: function() {
     var video = this.getVideoData();
-    console.log(video.source);
     return (
       <View style={styles.container}>
         <Video source={{uri: video.source}} // Can be a URL or a local file.
@@ -55,19 +62,19 @@ var VideoPlayer = React.createClass({
                onProgress={this.setTime}    // Callback every ~250ms with currentTime
                onEnd={this.onEnd}           // Callback when playback finishes
                style={styles.backgroundVideo} />
-        <Text style={styles.welcome}>
+        <Text style={styles.title}>
           {video.clipTitle}
         </Text>
-
-          <TouchableHighlight onPress={this._onPressButton} style="{styles.button}">
-            <Text style={styles.welcome}>Hit</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight onPress={this._onPressHitButton} style="{styles.button}">
+            <Text style={styles.button}>HIT</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight onPress={this._onPressButton} style="{styles.button}">
-            <Text style={styles.welcome}>Shit</Text>
+          <TouchableHighlight onPress={this._onPressShitButton} style="{styles.button}">
+            <Text style={styles.button}>SHIT</Text>
           </TouchableHighlight>
-
-          </View>
+        </View>
+      </View>
 
     );
   }
@@ -76,19 +83,13 @@ var VideoPlayer = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+//    alignItems: 'center',
     //backgroundColor: '#FFFFFF',
   },
-  welcome: {
+  title: {
     fontSize: 14,
-    textAlign: 'center',
-    color: '#FFFFFF',
-    margin: 5,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    color: '#DDDDDD',
+    margin: 10,
   },
   backgroundVideo: {
     position: 'absolute',
@@ -99,12 +100,22 @@ var styles = StyleSheet.create({
   },
   button: {
     fontSize: 16,
+    textAlign: 'center',
     margin: 5,
+    padding: 10,
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: '#d6d7da',
-    marginBottom: 5,
+    borderColor: '#DDDDDD',
+    marginLeft: 120,
+    marginRight: 120,
+    color: '#DDDDDD',
+    width: 150
   },
+  buttonContainer: {
+     marginTop: 200,
+     flexDirection: 'row',
+     justifyContent: 'center'
+  }
 });
 
 module.exports = VideoPlayer;
