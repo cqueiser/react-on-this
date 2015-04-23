@@ -21,6 +21,14 @@ public class Vote {
     @Column(name = "likes", nullable = false)
     private boolean likes;
 
+    public Vote() {}
+
+    public Vote(String user, String videoId, boolean likes) {
+        this.user = user;
+        this.videoId = videoId;
+        this.likes = likes;
+    }
+
     public String getUser() {
         return user;
     }

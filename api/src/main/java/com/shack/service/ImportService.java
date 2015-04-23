@@ -3,17 +3,17 @@ package com.shack.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shack.model.ImportVideo;
-import com.shack.model.MovieSource;
-import com.shack.model.Video;
+import com.shack.model.*;
 
 import com.shack.repository.VideoRepository;
+import com.shack.repository.VotingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ImportService {
@@ -21,8 +21,12 @@ public class ImportService {
     @Autowired
     private VideoRepository videoRepo;
 
+    @Autowired
+    private VotingRepository votingRepo;
+
     @PostConstruct
-    public void importData() {
+    public void importVideos() {
+        Random random = new Random();
         ObjectMapper mapper = new ObjectMapper();
         try {
             List<ImportVideo> videos;
@@ -40,6 +44,19 @@ public class ImportService {
                                 "http://is.myvideo.de/" + importVideo.getThumbnail()
                         );
                         videoRepo.save(video);
+
+                        for(int i=1; i<=5; i++) {
+                            if (random.nextBoolean()) {
+                                Vote vote = new Vote(
+                                        "User_" + i,
+                                        importVideo.getId(),
+                                        random.nextBoolean()
+                                );
+
+                                votingRepo.save(vote);
+                            }
+                        }
+
                         break;
                     }
                 }
