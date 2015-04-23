@@ -35,7 +35,7 @@ public class ImportService {
             for (ImportVideo importVideo : videos) {
 
                 for (MovieSource movieSource : importVideo.getMovieSources()) {
-                    if (!movieSource.isToken_protected() && movieSource.getMime_type().contains("mp4")) {
+                    if (!movieSource.isToken_protected() && movieSource.getMime_type().contains("mp4") && "http".equals(movieSource.getProtocol())) {
                         Video video = new Video(
                                 importVideo.getId(),
                                 importVideo.getMovieFormatName(),
