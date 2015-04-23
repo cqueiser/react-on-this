@@ -42,4 +42,9 @@ public class VideoService {
         }
         return results;
     }
+
+    public Collection<Video> getTopVideos(final int rows) {
+        List<Video> results = videoRepository.findTopVotes(rows);
+        return results;
+    }
 }

@@ -37,4 +37,9 @@ public class ReactController {
         return userService.getUserVideos(user);
     }
 
+    @RequestMapping("/topvideos")
+    public Collection<Video> topVideos(final @RequestParam(value="rows", defaultValue="10") int rows) {
+        return videoService.getTopVideos(rows);
+    }
+
 }
