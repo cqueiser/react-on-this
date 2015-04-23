@@ -28,7 +28,7 @@ public class Video {
     private int like;
 
     @Transient
-    private int dislikes;
+    private int dislike;
 
     public Video() {}
 
@@ -84,7 +84,7 @@ public class Video {
 
     public void setLike(int like) {this.like = like;}
 
-    public int getDislikes() {return dislikes;}
+    public int getDislike() {return dislike;}
 
-    public void setDislikes(int dislikes) {this.dislikes = dislikes;}
+    public void setDislike(int dislike) {this.dislike = dislike;}
 }
