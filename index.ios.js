@@ -7,6 +7,7 @@
 var React = require('react-native');
 var VideoPlayer = require('./VideoPlayer');
 var YourVideoList = require('./YourVideoList');
+var TopVideoList = require('./TopVideoList');
 var {
     AppRegistry,
     StyleSheet,
@@ -39,13 +40,10 @@ var ReactOnThis = React.createClass({
         )
     },
 
-    _renderContent: function (color:string, pageText:string) {
+    _renderTopVideoList: function() {
         return (
-            <View style={[styles.tabContent, {backgroundColor: color}]}>
-                <Text style={styles.tabText}>{pageText}</Text>
-                <Text style={styles.tabText}>{this.state.presses} re-renders of the More tab</Text>
-            </View>
-        );
+            <TopVideoList />
+        )
     },
 
     render: function () {
@@ -54,6 +52,7 @@ var ReactOnThis = React.createClass({
                 <TabBarIOS.Item
                     systemIcon="featured"
                     title="Explore"
+                    accessibilityLabel="Explore"
                     selected={this.state.selectedTab === 'searchVideoTab'}
                     onPress={() => {
                         this.setState({
@@ -65,6 +64,8 @@ var ReactOnThis = React.createClass({
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     systemIcon="top-rated"
+                    title="Your Videos"
+                    accessibilityLabel="Your Videos"
                     badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
                     selected={this.state.selectedTab === 'yourVideoTab'}
                     onPress={() => {
@@ -77,6 +78,8 @@ var ReactOnThis = React.createClass({
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     systemIcon="favorites"
+                    title="Top Videos"
+                    accessibilityLabel="Top Videos"
                     selected={this.state.selectedTab === 'topListTab'}
                     onPress={() => {
                         this.setState({
@@ -84,7 +87,7 @@ var ReactOnThis = React.createClass({
                         });
                     }}
                 >
-                    {this._renderContent('#21551C', 'Green Tab')}
+                    {this._renderTopVideoList()}
                 </TabBarIOS.Item>
             </TabBarIOS>
         );
