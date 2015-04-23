@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public List<Video> getUserVideos(final String user) {
-        List<Vote> votes = votingRepository.findByUser(user);
+        List<Vote> votes = votingRepository.findByUserAndLikes(user, true);
         Collections.shuffle(votes);
         List<Video> videos = new ArrayList<>(votes.size());
         for (Vote vote : votes) {
