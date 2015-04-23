@@ -27,8 +27,8 @@ public class VideoService {
         return results;
     }
 
-    public Collection<VideoVoted> getTopVideos(final int rows) {
-        List<VideoVoted> results = videoRepository.findTopVotes(rows);
+    public Collection<VideoVoted> getTopVideos(final int rows, final String order) {
+        List<VideoVoted> results = videoRepository.findTopVotes(rows, order);
         return results;
     }
 }

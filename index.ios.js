@@ -63,6 +63,19 @@ var ReactOnThis = React.createClass({
                     {this._renderVideoPlayer()}
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
+                    systemIcon="favorites"
+                    title="Top Videos"
+                    accessibilityLabel="Top Videos"
+                    selected={this.state.selectedTab === 'topListTab'}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'topListTab',
+                        });
+                    }}
+                >
+                    {this._renderTopVideoList()}
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
                     systemIcon="top-rated"
                     title="Your Videos"
                     accessibilityLabel="Your Videos"
@@ -75,19 +88,6 @@ var ReactOnThis = React.createClass({
                         }}
                 >
                     {this._renderYourVideoList()}
-                </TabBarIOS.Item>
-                <TabBarIOS.Item
-                    systemIcon="favorites"
-                    title="Top Videos"
-                    accessibilityLabel="Top Videos"
-                    selected={this.state.selectedTab === 'topListTab'}
-                    onPress={() => {
-                        this.setState({
-                            selectedTab: 'topListTab',
-                        });
-                    }}
-                >
-                    {this._renderTopVideoList()}
                 </TabBarIOS.Item>
             </TabBarIOS>
         );
