@@ -6,7 +6,7 @@
 
 var React = require('react-native');
 var Video = require('react-native-video');
-var REQUEST_URL = 'http://192.168.1.117:8080/api/v1/topvideos?rows=10&order=likeRatio';
+var REQUEST_URL = 'http://localhost:8080/api/v1/topvideos?rows=10&order=likeRatio';
 var MOCKED_VIDEO_DATA = [
     {
         "videoId": "MOVIE_11584253",
