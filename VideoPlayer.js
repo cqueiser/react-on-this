@@ -7,8 +7,8 @@
 var React = require('react-native');
 var Video = require('react-native-video');
 
-var _apiUrl_pull = "http://192.168.1.117:8080/api/v1/videos";
-var _apiUrl_push = "http://192.168.1.117:8080/api/v1/vote";
+var _apiUrl_pull = "http://localhost:8080/api/v1/videos";
+var _apiUrl_push = "http://localhost:8080/api/v1/vote";
 
 var {
   AppRegistry,
