@@ -6,21 +6,7 @@
 
 var React = require('react-native');
 var Video = require('react-native-video');
-var MOCKED_VIDEO_DATA = [
-    {
-        "videoId": "MOVIE_11584253",
-        "formatName": "Red Hot Chilly Peppers",
-        "clipTitle": "Die Toten Crackhuren aus dem Kofferraum",
-        "source": "http://is.myvideo.de/movie23/95/11584253.mp4",
-        "image": "http://is.myvideo.de/movie23/95/thumbs/11584253_1.jpg"
-    },
-    {
-        "videoId": "MOVIE_11582975",
-        "formatName": "Pato Siebenhaar",
-        "clipTitle": "Fuld Af Løgn",
-        "source": "http://is.myvideo.de/movie18/db/11582975.mp4",
-        "image": "http://is.myvideo.de/movie18/db/thumbs/11582975_1.jpg"
-    }];
+var REQUEST_URL = 'http://localhost:8080/api/v1/myvideos/xyz';
 var {
     AppRegistry,
     Image,
@@ -35,14 +21,17 @@ var YourVideoList = React.createClass({
     onLoad: function () {
         console.log('loaded');
     },
-    getMockedVideos: function() {
-        return MOCKED_VIDEO_DATA;
-    },
     fetchData: function() {
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(this.getMockedVideos()),
-            loaded: true,
-        });
+        fetch(REQUEST_URL)
+            .then((response) => response.json())
+            .then((responseData) => {
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows(responseData),
+                    loaded: true
+                });
+            console.log(responseData);
+            })
+            .done();
     },
     componentDidMount: function() {
         this.fetchData();
@@ -50,9 +39,9 @@ var YourVideoList = React.createClass({
     getInitialState: function() {
         return {
             dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
+                rowHasChanged: (row1, row2) => row1 !== row2
             }),
-            loaded: false,
+            loaded: false
         };
     },
     _renderRow: function(rowData: string, sectionID: number, rowID: number) {
@@ -97,7 +86,7 @@ var YourVideoList = React.createClass({
                 <View style={styles.separator} />
             </View>
         );
-    },
+    }
 });
 
 var styles = StyleSheet.create({
@@ -106,17 +95,17 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-        marginTop: 10,
-        marginBottom: 10,
+        backgroundColor: '#E6E6E6',
+        paddingTop: 10,
+        paddingBottom: 10
     },
     thumbnail: {
         width: 77,
         height: 54,
-        marginRight: 5,
+        marginRight: 5
     },
     rightContainer: {
-        flex: 1,
+        flex: 1
     },
     indexNumber: {
         fontSize: 35,
@@ -124,25 +113,25 @@ var styles = StyleSheet.create({
         color: '#6E6E6E',
         width: 70,
         paddingRight: 20,
-        textAlign: 'right',
+        textAlign: 'right'
     },
     title: {
-        fontSize: 20,
-        marginBottom: 8,
+        fontSize: 18,
         textAlign: 'left',
-        color: '#424242',
+        color: '#424242'
     },
     formatName: {
         color: '#6E6E6E',
+        fontSize: 14
     },
     listView: {
         paddingTop: 20,
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#D8D8D8'
     },
     separator: {
         height: 1,
-        backgroundColor: '#CCCCCC',
-    },
+        backgroundColor: '#CCCCCC'
+    }
 });
 
 module.exports = YourVideoList;

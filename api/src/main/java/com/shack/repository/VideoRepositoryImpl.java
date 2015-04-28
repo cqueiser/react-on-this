@@ -16,14 +16,14 @@ public class VideoRepositoryImpl implements VideoRepositoryCustom {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<VideoVoted> findTopVotes(int rows) {
+    public List<VideoVoted> findTopVotes(int rows, String order) {
         List<VideoVoted> results = jdbcTemplate.query(
-                "SELECT count(vo.VIDEO_ID) as total, vi.* FROM VOTES vo JOIN VIDEOS vi ON vo.VIDEO_ID = vi.VIDEO_ID WHERE (vo.LIKES = TRUE) GROUP BY vo.VIDEO_ID ORDER BY total DESC LIMIT " + rows,
+                "SELECT COUNT(CASE WHEN vo.LIKES = TRUE THEN vo.VIDEO_ID END) AS likes, COUNT(CASE WHEN vo.LIKES = FALSE THEN vo.VIDEO_ID END) AS dislikes, SUM(CASE WHEN vo.LIKES=TRUE THEN 1 WHEN vo.LIKES=FALSE THEN -1 else 0 END) AS likeRatio, vi.* FROM VOTES vo JOIN VIDEOS vi ON vo.VIDEO_ID = vi.VIDEO_ID GROUP BY vo.VIDEO_ID ORDER BY " + order + " DESC LIMIT " + rows,
                 new RowMapper<VideoVoted>() {
                     @Override
                     public VideoVoted mapRow(ResultSet rs, int rowNum) throws SQLException {
                         return new VideoVoted(rs.getString("VIDEO_ID"), rs.getString("FORMAT_NAME"), rs.getString("CLIP_TITLE"),
-                                rs.getString("SOURCE"), rs.getString("IMAGE"), rs.getInt("total"));
+                                rs.getString("SOURCE"), rs.getString("IMAGE"), rs.getInt("likes"), rs.getInt("dislikes"), rs.getInt("likeRatio"));
                     }
                 });
 

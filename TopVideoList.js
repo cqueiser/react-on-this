@@ -6,6 +6,7 @@
 
 var React = require('react-native');
 var Video = require('react-native-video');
+var REQUEST_URL = 'http://localhost:8080/api/v1/topvideos?rows=10&order=likeRatio';
 var MOCKED_VIDEO_DATA = [
     {
         "videoId": "MOVIE_11584253",
@@ -35,14 +36,17 @@ var TopVideoList = React.createClass({
     onLoad: function () {
         console.log('loaded');
     },
-    getMockedVideos: function() {
-        return MOCKED_VIDEO_DATA;
-    },
     fetchData: function() {
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(this.getMockedVideos()),
-            loaded: true,
-        });
+        fetch(REQUEST_URL)
+            .then((response) => response.json())
+            .then((responseData) => {
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows(responseData),
+                    loaded: true
+                });
+                console.log(responseData);
+            })
+            .done();
     },
     componentDidMount: function() {
         this.fetchData();
@@ -50,9 +54,9 @@ var TopVideoList = React.createClass({
     getInitialState: function() {
         return {
             dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
+                rowHasChanged: (row1, row2) => row1 !== row2
             }),
-            loaded: false,
+            loaded: false
         };
     },
     _renderRow: function(rowData: string, sectionID: number, rowID: number) {
@@ -93,11 +97,15 @@ var TopVideoList = React.createClass({
                 <View style={styles.rightContainer}>
                     <Text style={styles.title}>{video.clipTitle}</Text>
                     <Text style={styles.formatName}>{video.formatName}</Text>
+                    <View style={styles.row}>
+                        <Text style={styles.likes}>Likes: {video.likes}</Text>
+                        <Text style={styles.dislikes}>Dislikes: {video.dislikes}</Text>
+                    </View>
                 </View>
                 <View style={styles.separator} />
             </View>
         );
-    },
+    }
 });
 
 var styles = StyleSheet.create({
@@ -106,17 +114,17 @@ var styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-        marginTop: 10,
-        marginBottom: 10,
+        backgroundColor: '#E6E6E6',
+        paddingTop: 10,
+        paddingBottom: 10
     },
     thumbnail: {
         width: 77,
         height: 54,
-        marginRight: 5,
+        marginRight: 5
     },
     rightContainer: {
-        flex: 1,
+        flex: 1
     },
     indexNumber: {
         fontSize: 35,
@@ -124,25 +132,37 @@ var styles = StyleSheet.create({
         color: '#6E6E6E',
         width: 70,
         paddingRight: 20,
-        textAlign: 'right',
+        textAlign: 'right'
     },
     title: {
-        fontSize: 20,
-        marginBottom: 8,
+        fontSize: 18,
         textAlign: 'left',
-        color: '#424242',
+        color: '#424242'
     },
     formatName: {
         color: '#6E6E6E',
+        fontSize: 14
     },
     listView: {
         paddingTop: 20,
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#D8D8D8'
     },
     separator: {
         height: 1,
-        backgroundColor: '#CCCCCC',
+        backgroundColor: '#CCCCCC'
     },
+    likes: {
+        fontSize: 12,
+        color: '#088A08'
+    },
+    dislikes: {
+        fontSize: 12,
+        color: '#B40404',
+        marginLeft: 10
+    },
+    row: {
+        flexDirection: 'row'
+    }
 });
 
 module.exports = TopVideoList;

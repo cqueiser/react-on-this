@@ -24,7 +24,7 @@ var ReactOnThis = React.createClass({
 
     getInitialState: function () {
         return {
-            selectedTab: 'searchVideoTab',
+            selectedTab: 'searchVideoTab'
         };
     },
 
@@ -56,11 +56,24 @@ var ReactOnThis = React.createClass({
                     selected={this.state.selectedTab === 'searchVideoTab'}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'searchVideoTab',
+                            selectedTab: 'searchVideoTab'
                         });
                         }}
                 >
                     {this._renderVideoPlayer()}
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    systemIcon="favorites"
+                    title="Top Videos"
+                    accessibilityLabel="Top Videos"
+                    selected={this.state.selectedTab === 'topListTab'}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'topListTab'
+                        });
+                    }}
+                >
+                    {this._renderYourVideoList()}
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     systemIcon="top-rated"
@@ -70,22 +83,9 @@ var ReactOnThis = React.createClass({
                     selected={this.state.selectedTab === 'yourVideoTab'}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'yourVideoTab',
+                            selectedTab: 'yourVideoTab'
                         });
                         }}
-                >
-                    {this._renderYourVideoList()}
-                </TabBarIOS.Item>
-                <TabBarIOS.Item
-                    systemIcon="favorites"
-                    title="Top Videos"
-                    accessibilityLabel="Top Videos"
-                    selected={this.state.selectedTab === 'topListTab'}
-                    onPress={() => {
-                        this.setState({
-                            selectedTab: 'topListTab',
-                        });
-                    }}
                 >
                     {this._renderTopVideoList()}
                 </TabBarIOS.Item>
@@ -97,12 +97,12 @@ var ReactOnThis = React.createClass({
 var styles = StyleSheet.create({
     tabContent: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     tabText: {
         color: 'white',
-        margin: 50,
-    },
+        margin: 50
+    }
 });
 
 AppRegistry.registerComponent('ReactOnThis', () => ReactOnThis);
