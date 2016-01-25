@@ -34,13 +34,13 @@ var ReactOnThis = React.createClass({
         );
     },
 
-    _renderYourVideoList: function() {
+    _renderYourVideoList: function () {
         return (
             <YourVideoList />
         )
     },
 
-    _renderTopVideoList: function() {
+    _renderTopVideoList: function () {
         return (
             <TopVideoList />
         )
@@ -59,7 +59,7 @@ var ReactOnThis = React.createClass({
                             selectedTab: 'searchVideoTab'
                         });
                         }}
-                >
+                    >
                     {this._renderVideoPlayer()}
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
@@ -72,7 +72,7 @@ var ReactOnThis = React.createClass({
                             selectedTab: 'topListTab'
                         });
                     }}
-                >
+                    >
                     {this._renderYourVideoList()}
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
@@ -86,7 +86,7 @@ var ReactOnThis = React.createClass({
                             selectedTab: 'yourVideoTab'
                         });
                         }}
-                >
+                    >
                     {this._renderTopVideoList()}
                 </TabBarIOS.Item>
             </TabBarIOS>

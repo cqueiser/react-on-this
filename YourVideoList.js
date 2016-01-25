@@ -21,7 +21,7 @@ var YourVideoList = React.createClass({
     onLoad: function () {
         console.log('loaded');
     },
-    fetchData: function() {
+    fetchData: function () {
         fetch(REQUEST_URL)
             .then((response) => response.json())
             .then((responseData) => {
@@ -29,14 +29,14 @@ var YourVideoList = React.createClass({
                     dataSource: this.state.dataSource.cloneWithRows(responseData),
                     loaded: true
                 });
-            console.log(responseData);
+                console.log(responseData);
             })
             .done();
     },
-    componentDidMount: function() {
+    componentDidMount: function () {
         this.fetchData();
     },
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2
@@ -44,7 +44,7 @@ var YourVideoList = React.createClass({
             loaded: false
         };
     },
-    _renderRow: function(rowData: string, sectionID: number, rowID: number) {
+    _renderRow: function (rowData:string, sectionID:number, rowID:number) {
         return this.renderVideo(rowData, rowID);
     },
     render: function () {
@@ -60,7 +60,7 @@ var YourVideoList = React.createClass({
                 />
         );
     },
-    renderLoadingView: function() {
+    renderLoadingView: function () {
         return (
             <View style={styles.container}>
                 <Text>
@@ -70,7 +70,7 @@ var YourVideoList = React.createClass({
         );
     },
 
-    renderVideo: function(video, rowID: number) {
+    renderVideo: function (video, rowID:number) {
         rowID++;
         return (
             <View style={styles.container}>
@@ -83,7 +83,7 @@ var YourVideoList = React.createClass({
                     <Text style={styles.title}>{video.clipTitle}</Text>
                     <Text style={styles.formatName}>{video.formatName}</Text>
                 </View>
-                <View style={styles.separator} />
+                <View style={styles.separator}/>
             </View>
         );
     }

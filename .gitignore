@@ -26,3 +26,5 @@ project.xcworkspace
 #
 node_modules/
 npm-debug.log
+.watchman.root.log
+.watchman.root.state
